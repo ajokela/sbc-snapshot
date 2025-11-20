@@ -341,10 +341,7 @@ Contributions welcome! Please:
 
 ## License
 
-Dual licensed under your choice of:
-
-- MIT License ([LICENSE-MIT](LICENSE-MIT))
-- BSD 3-Clause License ([LICENSE-BSD](LICENSE-BSD))
+Licensed under the BSD 3-Clause License. See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
