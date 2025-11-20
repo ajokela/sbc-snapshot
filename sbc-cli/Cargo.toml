@@ -16,7 +16,7 @@ name = "sbc-snapshot"
 path = "src/main.rs"
 
 [dependencies]
-sbc-core = { path = "../sbc-core" }
+sbc-core = { version = "0.1.0", path = "../sbc-core" }
 clap.workspace = true
 anyhow.workspace = true
 serde_json.workspace = true
