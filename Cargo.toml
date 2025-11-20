@@ -11,6 +11,11 @@ edition = "2021"
 authors = ["Alex Jokela <alex@camulus.com>"]
 license = "BSD-3-Clause"
 repository = "https://github.com/ajokela/sbc-snapshot"
+homepage = "https://github.com/ajokela/sbc-snapshot"
+documentation = "https://github.com/ajokela/sbc-snapshot#readme"
+keywords = ["security", "sbc", "raspberry-pi", "audit", "scanner"]
+categories = ["command-line-utilities", "development-tools"]
+description = "Security and configuration assessment tool for Single Board Computers"
 
 [workspace.dependencies]
 # Serialization
