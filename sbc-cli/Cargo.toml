@@ -1,0 +1,17 @@
+[package]
+name = "sbc-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sbc-snapshot"
+path = "src/main.rs"
+
+[dependencies]
+sbc-core = { path = "../sbc-core" }
+clap.workspace = true
+anyhow.workspace = true
+serde_json.workspace = true
+nix.workspace = true

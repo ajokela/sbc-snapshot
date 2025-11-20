@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "version": "0.1.0",
+    "timestamp": "2025-11-16T00:35:55.980577704Z",
+    "hostname": "orangepi5-max",
+    "run_as_root": true
+  },
+  "system": {
+    "os_name": "Debian GNU/Linux",
+    "os_version": "12 (bookworm)",
+    "kernel_version": "6.1.115-vendor-rk35xx",
+    "architecture": null,
+    "board_model": "RK3588 OPi 5 Max",
+    "cpu_info": null,
+    "memory_total_kb": 16340312
+  },
+  "accounts": {
+    "findings": [
+      {
+        "id": "accounts-301",
+        "category": "accounts",
+        "severity": "INFO",
+        "description": "Root account has a password set",
+        "details": "Ensure it's a strong password and consider using sudo instead of direct root login"
+      }
+    ]
+  },
+  "network": {
+    "findings": [
+      {
+        "id": "ssh-100",
+        "category": "ssh",
+        "severity": "HIGH",
+        "description": "Root login via SSH is permitted with password",
+        "details": "PermitRootLogin is set to 'yes'",
+        "remediation": "Set PermitRootLogin to 'prohibit-password' or 'no' in /etc/ssh/sshd_config"
+      },
+      {
+        "id": "ssh-110",
+        "category": "ssh",
+        "severity": "MEDIUM",
+        "description": "Password authentication is enabled",
+        "details": "PasswordAuthentication is set to 'yes'",
+        "remediation": "Consider disabling password authentication and using public key authentication only"
+      },
+      {
+        "id": "ssh-140",
+        "category": "ssh",
+        "severity": "LOW",
+        "description": "X11 forwarding is enabled",
+        "details": "X11Forwarding is set to 'yes'",
+        "remediation": "Disable X11Forwarding unless specifically needed"
+      },
+      {
+        "id": "network-100",
+        "category": "network",
+        "severity": "MEDIUM",
+        "description": "9 service(s) listening on all interfaces",
+        "details": "Services: 5355/udp, 5355/udp, 5355/tcp, 8080/tcp (HTTP-Alt), 22/tcp (SSH), 5355/tcp, 5201/tcp, 8080/tcp (HTTP-Alt), 22/tcp (SSH)",
+        "remediation": "Review services and bind to localhost (127.0.0.1) if not needed externally, or configure a firewall"
+      },
+      {
+        "id": "network-400-8080",
+        "category": "network",
+        "severity": "MEDIUM",
+        "description": "HTTP-Alt web interface exposed on all interfaces",
+        "details": "Port 8080",
+        "remediation": "Restrict web admin panels to localhost or use VPN/SSH tunnel for access"
+      },
+      {
+        "id": "firewall-120",
+        "category": "firewall",
+        "severity": "INFO",
+        "description": "nftables has active rules"
+      }
+    ]
+  },
+  "services": {
+    "findings": [
+      {
+        "id": "services-500",
+        "category": "services",
+        "severity": "INFO",
+        "description": "Docker/container runtime is running",
+        "details": "Ensure containers are from trusted sources and kept updated"
+      },
+      {
+        "id": "services-900",
+        "category": "services",
+        "severity": "INFO",
+        "description": "24 services enabled, 17 currently running"
+      }
+    ]
+  },
+  "filesystem": {
+    "findings": []
+  },
+  "packages": {
+    "findings": []
+  },
+  "security_score": {
+    "total_score": 17,
+    "risk_level": "Medium-High",
+    "critical_count": 0,
+    "high_count": 1,
+    "medium_count": 3,
+    "low_count": 1,
+    "info_count": 4
+  }
+}

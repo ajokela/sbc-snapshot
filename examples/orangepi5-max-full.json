@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "version": "0.1.0",
+    "timestamp": "2025-11-16T01:06:06.116791031Z",
+    "hostname": "orangepi5-max",
+    "run_as_root": true
+  },
+  "system": {
+    "os_name": "Debian GNU/Linux",
+    "os_version": "12 (bookworm)",
+    "kernel_version": "6.1.115-vendor-rk35xx",
+    "architecture": null,
+    "board_model": "RK3588 OPi 5 Max",
+    "cpu_info": null,
+    "memory_total_kb": 16340312
+  },
+  "accounts": {
+    "findings": [
+      {
+        "id": "accounts-301",
+        "category": "accounts",
+        "severity": "INFO",
+        "description": "Root account has a password set",
+        "details": "Ensure it's a strong password and consider using sudo instead of direct root login"
+      }
+    ]
+  },
+  "network": {
+    "findings": [
+      {
+        "id": "ssh-100",
+        "category": "ssh",
+        "severity": "HIGH",
+        "description": "Root login via SSH is permitted with password",
+        "details": "PermitRootLogin is set to 'yes'",
+        "remediation": "Set PermitRootLogin to 'prohibit-password' or 'no' in /etc/ssh/sshd_config"
+      },
+      {
+        "id": "ssh-110",
+        "category": "ssh",
+        "severity": "MEDIUM",
+        "description": "Password authentication is enabled",
+        "details": "PasswordAuthentication is set to 'yes'",
+        "remediation": "Consider disabling password authentication and using public key authentication only"
+      },
+      {
+        "id": "ssh-140",
+        "category": "ssh",
+        "severity": "LOW",
+        "description": "X11 forwarding is enabled",
+        "details": "X11Forwarding is set to 'yes'",
+        "remediation": "Disable X11Forwarding unless specifically needed"
+      },
+      {
+        "id": "network-100",
+        "category": "network",
+        "severity": "MEDIUM",
+        "description": "9 service(s) listening on all interfaces",
+        "details": "Services: 5355/udp, 5355/udp, 5355/tcp, 8080/tcp (HTTP-Alt), 22/tcp (SSH), 5355/tcp, 5201/tcp, 8080/tcp (HTTP-Alt), 22/tcp (SSH)",
+        "remediation": "Review services and bind to localhost (127.0.0.1) if not needed externally, or configure a firewall"
+      },
+      {
+        "id": "network-400-8080",
+        "category": "network",
+        "severity": "MEDIUM",
+        "description": "HTTP-Alt web interface exposed on all interfaces",
+        "details": "Port 8080",
+        "remediation": "Restrict web admin panels to localhost or use VPN/SSH tunnel for access"
+      },
+      {
+        "id": "firewall-120",
+        "category": "firewall",
+        "severity": "INFO",
+        "description": "nftables has active rules"
+      }
+    ]
+  },
+  "services": {
+    "findings": [
+      {
+        "id": "services-500",
+        "category": "services",
+        "severity": "INFO",
+        "description": "Docker/container runtime is running",
+        "details": "Ensure containers are from trusted sources and kept updated"
+      },
+      {
+        "id": "services-900",
+        "category": "services",
+        "severity": "INFO",
+        "description": "24 services enabled, 17 currently running"
+      }
+    ]
+  },
+  "filesystem": {
+    "findings": [
+      {
+        "id": "filesystem-101-ssh_host_rsa_key",
+        "category": "filesystem",
+        "severity": "INFO",
+        "description": "RSA SSH host key present"
+      },
+      {
+        "id": "filesystem-101-ssh_host_ecdsa_key",
+        "category": "filesystem",
+        "severity": "INFO",
+        "description": "ECDSA SSH host key present"
+      },
+      {
+        "id": "filesystem-101-ssh_host_ed25519_key",
+        "category": "filesystem",
+        "severity": "INFO",
+        "description": "Ed25519 SSH host key present"
+      },
+      {
+        "id": "filesystem-201-alex",
+        "category": "filesystem",
+        "severity": "HIGH",
+        "description": "User 'alex's authorized_keys has insecure permissions",
+        "details": "Permissions: 644 (should be 0600)",
+        "remediation": "Run: chmod 600 /home/alex/.ssh/authorized_keys"
+      },
+      {
+        "id": "filesystem-202-alex",
+        "category": "filesystem",
+        "severity": "INFO",
+        "description": "User 'alex' has 2 authorized SSH key(s)"
+      },
+      {
+        "id": "filesystem-300",
+        "category": "filesystem",
+        "severity": "HIGH",
+        "description": "1 world-writable file(s) found in sensitive directories",
+        "details": "Examples: /etc/mtab",
+        "remediation": "Review and remove world-write permissions: chmod o-w <file>"
+      },
+      {
+        "id": "sudoers-100-alex",
+        "category": "sudoers",
+        "severity": "CRITICAL",
+        "description": "'alex' has passwordless sudo for ALL commands",
+        "details": "Rule: alex ALL=(ALL) NOPASSWD: ALL (from /etc/sudoers)",
+        "remediation": "Remove NOPASSWD: or restrict to specific commands only. Edit /etc/sudoers"
+      },
+      {
+        "id": "sudoers-300",
+        "category": "sudoers",
+        "severity": "INFO",
+        "description": "3 user(s)/group(s) can run any command via sudo",
+        "details": "Users/Groups: root, %sudo, alex"
+      },
+      {
+        "id": "sudoers-402-sudo",
+        "category": "sudoers",
+        "severity": "INFO",
+        "description": "Admin group '%sudo' configured (password required)"
+      },
+      {
+        "id": "sudoers-900",
+        "category": "sudoers",
+        "severity": "INFO",
+        "description": "3 sudo rule(s) configured"
+      }
+    ]
+  },
+  "packages": {
+    "findings": [
+      {
+        "id": "packages-101",
+        "category": "packages",
+        "severity": "INFO",
+        "description": "All packages are up to date"
+      },
+      {
+        "id": "packages-200-1",
+        "category": "packages",
+        "severity": "INFO",
+        "description": "Third-party repository",
+        "details": "In /etc/apt/sources.list.d/google-cloud-sdk.list: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+      },
+      {
+        "id": "packages-200-2",
+        "category": "packages",
+        "severity": "INFO",
+        "description": "Third-party repository",
+        "details": "In /etc/apt/sources.list.d/docker.list: deb [arch=arm64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian   bookworm stable"
+      },
+      {
+        "id": "packages-301",
+        "category": "packages",
+        "severity": "MEDIUM",
+        "description": "Unattended upgrades not configured",
+        "details": "Automatic security updates are not enabled",
+        "remediation": "Install unattended-upgrades: sudo apt install unattended-upgrades && sudo dpkg-reconfigure -plow unattended-upgrades"
+      }
+    ]
+  },
+  "security_score": {
+    "total_score": 44,
+    "risk_level": "Critical",
+    "critical_count": 1,
+    "high_count": 3,
+    "medium_count": 4,
+    "low_count": 1,
+    "info_count": 14
+  }
+}

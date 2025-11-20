@@ -1,0 +1,25 @@
+# Cargo configuration for SBC Snapshot
+
+# Static linking configuration for musl targets
+[target.aarch64-unknown-linux-musl]
+linker = "rust-lld"
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.armv7-unknown-linux-musleabihf]
+linker = "rust-lld"
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.x86_64-unknown-linux-musl]
+linker = "rust-lld"
+rustflags = ["-C", "target-feature=+crt-static", "-C", "link-arg=-static"]
+
+# Cargo aliases for easy building
+[alias]
+# Build static binaries for different platforms
+build-arm64 = "build --release --target aarch64-unknown-linux-musl"
+build-arm32 = "build --release --target armv7-unknown-linux-musleabihf"
+build-x86 = "build --release --target x86_64-unknown-linux-musl"
+
+# Quick commands
+br = "build --release"
+check-all = "check --workspace --all-targets"
