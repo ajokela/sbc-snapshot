@@ -9,8 +9,8 @@ resolver = "2"
 version = "0.1.0"
 edition = "2021"
 authors = ["SBC Snapshot Contributors"]
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/yourusername/sbc-snapshot"
+license = "MIT OR BSD-3-Clause"
+repository = "https://github.com/ajokela/sbc-snapshot"
 
 [workspace.dependencies]
 # Serialization

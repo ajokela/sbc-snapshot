@@ -341,7 +341,10 @@ Contributions welcome! Please:
 
 ## License
 
-MIT or Apache-2.0 (your choice)
+Dual licensed under your choice of:
+
+- MIT License ([LICENSE-MIT](LICENSE-MIT))
+- BSD 3-Clause License ([LICENSE-BSD](LICENSE-BSD))
 
 ## Acknowledgments
 
